@@ -1,14 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const Image = styled.img`
-  max-width: 600px;
-  max-height: 600px;
-`
-
 const ResultGrid = ({data}) => {
   return (
-    <div>
+    <div className={ResultGrid}>
         {data?.map(item => (
           <Image
             key={item.id}
@@ -21,3 +16,8 @@ const ResultGrid = ({data}) => {
 }
 
 export default ResultGrid
+
+const Image = styled.img`
+  max-width: 600px;
+  max-height: 600px;
+`

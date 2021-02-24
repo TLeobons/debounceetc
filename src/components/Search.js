@@ -13,9 +13,7 @@ const Search = ({onSearchResult}) => {
 
   const search = async searchTerm => {
     if (!searchTerm) return
-    const [fetched, isLoading, error] = await fetch(URL, searchTerm)
-    console.log('search results', fetched, isLoading, error)
-    // console.log('search results', data.results, isLoading, error)
+    const [fetched, isLoading, error] = await fetch(searchTerm)
     onSearchResult(fetched, isLoading, error)
   }
 
@@ -31,7 +29,7 @@ const Search = ({onSearchResult}) => {
         type="search"
         onChange={handleChange}
         value={term}
-        />
+      />
     </div>
   )
 }

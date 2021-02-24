@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import axios from 'axios'
 
-import { paramsData } from 'configs/apiData'
+import { searchURL, paramsData } from 'configs/apiData'
 
 const useFetch = () => {
 
@@ -9,10 +9,10 @@ const useFetch = () => {
   const [error, setError] = useState(null)
   const [fetched, setFetched] = useState(null)
 
-  const fetchData = async (URL, searchTerm) => {
+  const fetchData = async searchTerm => {
     try {
       setIsLoading(true)
-      const {data} = await axios.get(URL, {
+      const {data} = await axios.get(searchURL, {
         params: {
           ...paramsData,
           query: searchTerm
