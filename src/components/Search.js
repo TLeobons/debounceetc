@@ -13,10 +13,10 @@ const Search = ({onSearchResult}) => {
 
   const search = async searchTerm => {
     if (!searchTerm) return
-    const [data, isLoading,error] = await fetch(URL, searchTerm)
-    console.log('search results', data.results, isLoading, error)
-    onSearchResult(data.results)
-    // console.log(data.results, isLoading, error)
+    const [fetched, isLoading, error] = await fetch(URL, searchTerm)
+    console.log('search results', fetched, isLoading, error)
+    // console.log('search results', data.results, isLoading, error)
+    onSearchResult(fetched, isLoading, error)
   }
 
   const handleChange = event => {

@@ -7,16 +7,21 @@ import Search from './components/Search'
 const App = () => {
   
   const [results, setResults] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState(null)
 
-  const handleSearchResult = data => {
-    setResults(data)
+  const handleSearchResult = (results, isLoading, error) => {
+    setResults(results)
+    setIsLoading(isLoading)
+    setError(error)
   }
   
   return (
     <div className="App">
       {/* <FetchRandomImages/> */}
       <Search onSearchResult={handleSearchResult}/>
-      {/* {/* <Loading data={results}/> */}
+      { isLoading && <Loading /> }
+      { error && <Error/> }
       <ResultGrid data={results}/>
     </div>
   )

@@ -1,31 +1,33 @@
 import {useState} from 'react'
 import axios from 'axios'
+
 import { paramsData } from 'configs/apiData'
 
 const useFetch = () => {
 
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState(null)
+  const [fetched, setFetched] = useState(null)
+
   const fetchData = async (URL, searchTerm) => {
-    let isLoading = false
-    let error = null
-    let data = null
     try {
-      isLoading = true
-      const result = await axios.get(URL, {
+      setIsLoading(true)
+      const {data} = await axios.get(URL, {
         params: {
           ...paramsData,
           query: searchTerm
         }
       })
-      console.log('fetch', result.data);
-      isLoading = false
-      data = result.data
+      console.log('fetch', data)
+      setIsLoading(false)
+      setFetched(data.results)
     }
     catch (e) {
-      error = new Error(e)
-      isLoading = false
+      setError(e)
+      setIsLoading(false)
     }
     
-    return [data, isLoading, error]
+    return [fetched, isLoading, error]
   }
 
   return fetchData
