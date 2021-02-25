@@ -3,11 +3,11 @@ import styled from 'styled-components'
 
 const Error = ({error}) => {
   return (
-      <Message>
-        There was an error with the request
-        {/* {error.status}
+    <Message>
+      There was an error with the request
+      {/* {error.status}
         {error.message} */}
-      </Message>
+    </Message>
   )
 }
 

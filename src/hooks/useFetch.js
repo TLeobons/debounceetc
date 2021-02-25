@@ -5,6 +5,7 @@ import { searchURL, paramsData } from 'configs/apiData'
 
 const useFetch = () => {
 
+  //should I create state here or use variables inside the fetchData function?
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(null)
   const [fetched, setFetched] = useState(null)

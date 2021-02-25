@@ -20,7 +20,7 @@ const App = () => {
     setIsLoading(isLoading)
     setError(error)
   }
-
+  // spinner never shows up since isLoading is never set to true
   useEffect(() => {
     const [results, isLoading, error] = fetch(randomURL)
     setResults(results)

@@ -2,8 +2,6 @@ import {useState} from 'react'
 import useDebounce from 'hooks/useDebounce'
 import useFetch from 'hooks/useFetch'
 
-const URL = 'https://api.unsplash.com/search/photos'
-
 const Search = ({onSearchResult}) => {
 
   const [term, setTerm] = useState('')
@@ -11,10 +9,16 @@ const Search = ({onSearchResult}) => {
   const debounce = useDebounce()
   const fetch = useFetch()
 
+  const loading = (isLoading) =>{
+    setIsLoading(isLoading)
+  }
+
   const search = async searchTerm => {
     if (!searchTerm) return
+    loading(true)
     const [fetched, isLoading, error] = await fetch(searchTerm)
     onSearchResult(fetched, isLoading, error)
+    loading(false)
   }
 
   const handleChange = event => {
