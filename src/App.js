@@ -17,7 +17,7 @@ const App = () => {
     console.log(fetchedImages)
     return (
         <div className="App">
-            {/*<Search loading={loading} onSearchResult={handleSearchResult}/>*/}
+            <Search/>
             {/*{error && <Error error={error}/>}*/}
             {isLoading
                 ? <Loading/>

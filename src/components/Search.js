@@ -1,24 +1,18 @@
 import {useState} from 'react'
 import useDebounce from 'hooks/useDebounce'
 import useFetch from 'hooks/useFetch'
+import {useGlobalDispatchContext} from "../context/globalContext"
 
-const Search = ({onSearchResult,setIsLoading}) => {
+const Search = () => {
 
   const [term, setTerm] = useState('')
 
   const debounce = useDebounce()
   const fetch = useFetch()
 
-  const loading = (isLoading) =>{
-    setIsLoading(isLoading)
-  }
-
   const search = async searchTerm => {
-    if (!searchTerm) return
-    loading(true)
-    const [fetched, isLoading, error] = await fetch(searchTerm)
-    onSearchResult(fetched, isLoading, error)
-    loading(false)
+    if (!searchTerm) return;
+    await fetch(searchTerm)
   }
 
   const handleChange = event => {
