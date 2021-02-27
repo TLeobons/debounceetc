@@ -10,10 +10,10 @@ const useFetch = () => {
   const [error, setError] = useState(null)
   const [fetched, setFetched] = useState(null)
 
-  const fetchData = async searchTerm => {
+  const fetchData = async (URL = searchURL, searchTerm) => {
     try {
       setIsLoading(true)
-      const {data} = await axios.get(searchURL, {
+      const {data} = await axios.get(URL, {
         params: {
           ...paramsData,
           query: searchTerm

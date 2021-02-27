@@ -24,6 +24,10 @@ const App = () => {
     setIsLoading(isLoading)
   }
 
+  useEffect(() => {
+    fetch(randomURL)  
+  }, [])
+
   return (
     <div className="App">
       <Search loading={loading} onSearchResult={handleSearchResult}/>
