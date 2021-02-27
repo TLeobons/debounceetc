@@ -1,17 +1,15 @@
 import {useState} from 'react'
+import styled from 'styled-components'
+
 import useDebounce from 'hooks/useDebounce'
 import useFetch from 'hooks/useFetch'
 
-const Search = ({onSearchResult}) => {
+const Search = ({loading, onSearchResult}) => {
 
   const [term, setTerm] = useState('')
 
   const debounce = useDebounce()
   const fetch = useFetch()
-
-  const loading = (isLoading) =>{
-    setIsLoading(isLoading)
-  }
 
   const search = async searchTerm => {
     if (!searchTerm) return
@@ -28,14 +26,19 @@ const Search = ({onSearchResult}) => {
   }
 
   return (
-    <div className="Search">
+    <SearchField className="Search">
       <input
         type="search"
         onChange={handleChange}
         value={term}
       />
-    </div>
+    </SearchField>
   )
 }
 
 export default Search
+
+const SearchField = styled.div`
+  width: 80%;
+  height:2rem;
+`

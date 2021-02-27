@@ -17,23 +17,19 @@ const App = () => {
 
   const handleSearchResult = (results, isLoading, error) => {
     setResults(results)
-    setIsLoading(isLoading)
     setError(error)
   }
-  // spinner never shows up since isLoading is never set to true
-  useEffect(() => {
-    const [results, isLoading, error] = fetch(randomURL)
-    setResults(results)
+
+  const loading = (isLoading) =>{
     setIsLoading(isLoading)
-    setError(error)
-  }, [])
-  
+  }
+
   return (
     <div className="App">
-      <Search onSearchResult={handleSearchResult}/>
+      <Search loading={loading} onSearchResult={handleSearchResult}/>
       { error && <Error error={error} /> }
-      { isLoading 
-        ? <Loading /> 
+      { isLoading
+        ? <Loading />
         : <ResultGrid data={results}/>
       }
     </div>
