@@ -22,8 +22,9 @@
   "scripts": {
     "start": "PORT=3300 react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "jest --watch",
+    "eject": "react-scripts eject",
+    "lint": "eslint ."
   },
   "eslintConfig": {
     "extends": [
@@ -45,5 +46,22 @@
   },
   "devDependencies": {
     "eslint-plugin-react-hooks": "^4.2.0"
+  },
+  "plugins": [
+    "prettier"
+  ],
+  "extends": [
+    "plugin:prettier/recommended"
+  ],
+  "env": {
+    "node": true,
+    "es6": true,
+    "jest": true
+  },
+  "rules": {
+    "eqeqeq": "warn"
+  },
+  "prettier": {
+    "singleQuote": true
   }
 }
