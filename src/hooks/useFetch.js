@@ -2,6 +2,7 @@ import {useState} from 'react'
 import axios from 'axios'
 
 import { searchURL, paramsData } from 'configs/apiData'
+import {useGlobalDispatchContext} from "../context/globalContext"
 
 const useFetch = () => {
 
@@ -10,25 +11,23 @@ const useFetch = () => {
   const [error, setError] = useState(null)
   const [fetched, setFetched] = useState(null)
 
+  const dispatch = useGlobalDispatchContext();
   const fetchData = async searchTerm => {
     try {
-      setIsLoading(true)
+      dispatch({type:'IMAGE_LOADING'})
       const {data} = await axios.get(searchURL, {
         params: {
           ...paramsData,
           query: searchTerm
         }
       })
-      console.log('fetch', data)
-      setIsLoading(false)
-      setFetched(data.results)
+      dispatch({type:'IMAGE_LOADED',loadedImages:data})
     }
     catch (e) {
       setError(e)
       setIsLoading(false)
     }
-    
-    return [fetched, isLoading, error]
+    return [fetched, isLoading]
   }
 
   return fetchData

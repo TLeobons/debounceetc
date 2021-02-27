@@ -2,7 +2,7 @@ import {useState} from 'react'
 import useDebounce from 'hooks/useDebounce'
 import useFetch from 'hooks/useFetch'
 
-const Search = ({onSearchResult}) => {
+const Search = ({onSearchResult,setIsLoading}) => {
 
   const [term, setTerm] = useState('')
 

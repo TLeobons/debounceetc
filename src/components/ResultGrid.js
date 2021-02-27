@@ -1,16 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
+import {useGlobalDispatchContext} from "../context/globalContext"
 
 const ResultGrid = ({data}) => {
   return (
-    <div className={ResultGrid}>
-      {data?.map(item => (
+    <div >
+      {console.log(data)}
+      {data&&data.map(item => (
         <Image
           key={item.id}
           src={item.urls.regular}
           alt={item.alt_description}
             />
-        ))}     
+        ))}
     </div>
   )
 }

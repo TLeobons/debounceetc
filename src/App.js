@@ -1,43 +1,17 @@
-import { useState, useEffect } from "react"
-
-import Error from 'components/Error'
-import Loading from 'components/Loading'
-import ResultGrid from 'components/ResultGrid'
-import Search from 'components/Search'
-import useFetch from 'hooks/useFetch'
-import {randomURL} from 'configs/apiData'
+import {useState, useEffect} from "react"
+import {randomURL} from "./configs/apiData"
+import useFetch from "./hooks/useFetch"
 
 const App = () => {
+    const fetch = useFetch()
+    useEffect(() => {
+        fetch(randomURL)
+    },[])
 
-  const fetch = useFetch()
-
-  const [results, setResults] = useState([])
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState(null)
-
-  const handleSearchResult = (results, isLoading, error) => {
-    setResults(results)
-    setIsLoading(isLoading)
-    setError(error)
-  }
-  // spinner never shows up since isLoading is never set to true
-  useEffect(() => {
-    const [results, isLoading, error] = fetch(randomURL)
-    setResults(results)
-    setIsLoading(isLoading)
-    setError(error)
-  }, [])
-  
-  return (
-    <div className="App">
-      <Search onSearchResult={handleSearchResult}/>
-      { error && <Error error={error} /> }
-      { isLoading 
-        ? <Loading /> 
-        : <ResultGrid data={results}/>
-      }
-    </div>
-  )
+    return (
+      <div className="App">
+      </div>
+    )
 
 }
 export default App
