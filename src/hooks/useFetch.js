@@ -21,7 +21,7 @@ const useFetch = () => {
           query: searchTerm
         }
       })
-      dispatch({type:'IMAGE_LOADED',loadedImages:data})
+      dispatch({type:'IMAGE_LOADED',loadedImages:data.results})
     }
     catch (e) {
       setError(e)
