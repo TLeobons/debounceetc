@@ -1,7 +1,10 @@
-import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './App'
+
+import logger from 'services/logService'
 import {GlobalProvider} from "./context/globalContext"
+import App from './App'
+
+logger.init()
 
 ReactDOM.render(
     <GlobalProvider>

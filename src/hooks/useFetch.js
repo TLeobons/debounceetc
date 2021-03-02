@@ -6,13 +6,10 @@ import {useGlobalDispatchContext} from "../context/globalContext"
 
 const useFetch = () => {
 
-  //should I create state here or use variables inside the fetchData function?
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState(null)
-  const [fetched, setFetched] = useState(null)
-
-  const dispatch = useGlobalDispatchContext();
+  const dispatch = useGlobalDispatchContext()
+  
   const fetchData = async searchTerm => {
+    let results
     try {
       dispatch({type:'IMAGE_LOADING'})
       const {data} = await axios.get(searchURL, {
@@ -21,13 +18,14 @@ const useFetch = () => {
           query: searchTerm
         }
       })
-      dispatch({type:'IMAGE_LOADED',loadedImages:data.results})
+      results = data.results
+      if (length === 0) dispatch({type:'ERROR_LOADING', error: 'no images found'})
+
+      dispatch({type:'IMAGE_LOADED',loadedImages: results})
     }
     catch (e) {
-      setError(e)
-      setIsLoading(false)
+      dispatch({type:'ERROR_LOADING',error: e})
     }
-    return [fetched, isLoading]
   }
 
   return fetchData

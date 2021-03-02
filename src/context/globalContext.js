@@ -4,8 +4,8 @@ import React, {createContext, useReducer, useContext} from "react"
 const defaultState = {
     currentTheme: "",
     fetchedImages: [],
-    isLoading: false
-
+    isLoading: false,
+    error: null
 }
 
 //Define Conext
@@ -26,12 +26,19 @@ const globalReducer = (state, action) => {
                 ...state,
                 fetchedImages: action.loadedImages,
                 isLoading: false,
+                error: null
             }
         }
         case 'IMAGE_LOADING': {
             return {
                 ...state,
                 isLoading: true,
+            }
+        }
+        case 'ERROR_LOADING': {
+            return {
+                ...state,
+                error: action.error
             }
         }
 
